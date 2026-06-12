@@ -1,0 +1,532 @@
+# Claude.md
+
+## Project Overview
+
+This project is a lightweight math fidget toy.
+
+The goal is not to build a serious study app.
+The goal is to create a simple, addictive page/app where users can solve endless easy middle-school-level math problems to keep their brain lightly engaged.
+
+Core feeling:
+
+> A fidget toy for the brain.
+
+The user should be able to open it, solve a short problem, get instant feedback, and continue without friction.
+
+## Product Concept
+
+Working name:
+
+* 수학 뽁뽁이
+* Math Pop
+* Math Fidget
+
+Main concept:
+
+* Easy Korean middle-school grade 1 math problems.
+* Very short problems.
+* Instant 4-choice answers.
+* No login.
+* No heavy study tracking.
+* No textbook feeling.
+* No pressure.
+* No long explanations unless needed.
+* Works well on mobile first.
+
+This should feel closer to:
+
+* bubble wrap
+* fidget spinner
+* 틀린그림찾기
+* quick brain snack
+
+Not like:
+
+* exam prep
+* lecture platform
+* serious LMS
+* competitive quiz app
+
+## Target User Experience
+
+The default flow:
+
+1. User opens the page.
+2. One problem is shown immediately.
+3. Four answer buttons are shown.
+4. User taps an answer.
+5. The app instantly shows correct/incorrect feedback.
+6. After a short delay, the next problem appears.
+7. The user can keep going endlessly.
+
+There should be no unnecessary steps.
+
+Do not require:
+
+* account creation
+* server login
+* course selection
+* long onboarding
+* ranking system
+* payment
+* social sharing
+
+## First Version Scope
+
+Build the first version as a web app.
+
+Prefer a simple static implementation:
+
+* HTML
+* CSS
+* JavaScript
+
+A framework is allowed only if the existing project already uses one.
+If starting from empty, prefer plain HTML/CSS/JS or a very small Vite setup.
+
+No backend is required for MVP.
+
+Use `localStorage` only for simple local records.
+
+## MVP Features
+
+Implement these first:
+
+* Random problem generation
+* 4-choice answer buttons
+* Instant grading when an answer is clicked
+* Correct/incorrect feedback
+* Auto-next problem after a short delay
+* Manual "next problem" button if needed
+* Current streak
+* Best streak
+* Total solved count
+* Total correct count
+* Total wrong count
+* Local persistence with `localStorage`
+* Mobile-friendly layout
+
+## Problem Style
+
+Problems must be short.
+
+Good examples:
+
+```text
+-7 + 12 = ?
+```
+
+```text
+3x = 18, x는?
+```
+
+```text
+12와 18의 최대공약수는?
+```
+
+```text
+2a + 3a = ?
+```
+
+```text
+y = 2x + 1, x = 3일 때 y는?
+```
+
+Bad examples:
+
+```text
+철수는 사과를 3개 가지고 있었고 영희가 사과를...
+```
+
+Avoid long word problems in the first version.
+
+## Problem Categories
+
+Use easy Korean middle-school grade 1 math.
+
+Start with these categories:
+
+1. Integer arithmetic
+
+   * addition
+   * subtraction
+   * multiplication
+   * simple division
+   * negative numbers
+
+2. Factors and multiples
+
+   * divisors
+   * multiples
+   * greatest common divisor
+   * least common multiple
+
+3. Prime factorization
+
+   * small numbers only
+   * avoid overly large values
+
+4. Simple algebra
+
+   * combining like terms
+   * `2a + 3a`
+   * `5x - 2x`
+
+5. Linear equations
+
+   * `x + a = b`
+   * `ax = b`
+   * `ax + b = c`
+   * answers should usually be integers
+
+6. Coordinates
+
+   * quadrant identification
+   * simple coordinate reading
+
+7. Ratio and proportion
+
+   * `2 : 3 = 8 : ?`
+
+8. Average
+
+   * average of 3 to 5 small numbers
+
+## Difficulty Rules
+
+The product should feel easy but not meaningless.
+
+Preferred difficulty:
+
+* solvable in 3 to 10 seconds
+* requires a tiny bit of thought
+* no calculator needed
+* no long reading
+* no advanced formulas
+* mostly integer answers
+* avoid fractions in early version unless very simple
+
+Avoid:
+
+* high school math
+* quadratic equations
+* geometry diagrams
+* proofs
+* long decimals
+* complicated fractions
+* trick questions that feel unfair
+
+## Answer Generation Rules
+
+Each problem generator should return a structured object:
+
+```js
+{
+  category: "linear-equation",
+  question: "3x + 5 = 20, x는?",
+  choices: ["3", "4", "5", "6"],
+  answer: "5",
+  explanation: "3x + 5 = 20 → 3x = 15 → x = 5"
+}
+```
+
+Rules:
+
+* Always include exactly 4 choices.
+* Choices must be unique.
+* One choice must be the correct answer.
+* Shuffle choices.
+* Avoid impossible or confusing choices.
+* Use Korean text for user-facing labels.
+* Explanations should be short.
+
+## Feedback Tone
+
+Feedback should be light, playful, and low-pressure.
+
+Correct examples:
+
+```text
+뽁. 정답.
+```
+
+```text
+좋음. x가 얌전히 잡힘.
+```
+
+```text
+뇌가 방금 기지개 켰음.
+```
+
+Incorrect examples:
+
+```text
+삐끗. 정답은 5.
+```
+
+```text
+괜찮음. 뇌가 잠깐 창문 봄.
+```
+
+```text
+x가 도망갔지만 다시 잡으면 됨.
+```
+
+Do not shame the user.
+
+Avoid:
+
+```text
+틀렸습니다. 공부하세요.
+```
+
+```text
+실패!
+```
+
+```text
+이것도 못 풀면 안 됩니다.
+```
+
+## UI Direction
+
+Mobile-first.
+
+The screen should be simple:
+
+* App title
+* Small stats row
+* Problem card
+* 4 answer buttons
+* Feedback area
+* Optional next button
+* Small reset stats button
+
+Suggested main copy:
+
+```text
+공부하려고 만든 거 아님.
+그냥 뇌로 돌리는 피젯 토이.
+```
+
+Alternative copy:
+
+```text
+머리가 심심할 때 누르는 수학 뽁뽁이.
+```
+
+## Visual Style
+
+Keep it calm and simple.
+
+Recommended style:
+
+* large readable question text
+* big tap-friendly answer buttons
+* generous spacing
+* soft rounded cards
+* no clutter
+* no excessive animation
+* no loud colors
+* pleasant micro-interactions
+
+Animations should be subtle:
+
+* small pop on correct answer
+* slight shake or fade on wrong answer
+* quick transition to next problem
+
+Do not add heavy game effects.
+
+## Interaction Rules
+
+When the user selects an answer:
+
+1. Disable all answer buttons immediately.
+2. Show whether it was correct.
+3. Highlight selected answer.
+4. Highlight correct answer if wrong.
+5. Update stats.
+6. Move to the next problem automatically after about 500 to 900 ms.
+
+The delay should be short enough to keep rhythm.
+
+The app should not require pressing "정답 확인".
+
+Answer tap itself is the confirmation.
+
+## Local Storage
+
+Store only simple local stats:
+
+```js
+{
+  totalSolved: number,
+  totalCorrect: number,
+  totalWrong: number,
+  currentStreak: number,
+  bestStreak: number,
+  lastPlayedDate: string
+}
+```
+
+Optional later:
+
+```js
+{
+  solvedToday: number,
+  categoryStats: object
+}
+```
+
+Do not implement accounts or server sync in MVP.
+
+## Code Quality
+
+Keep code simple and readable.
+
+Prefer:
+
+* small pure functions
+* separate problem generators by category
+* deterministic helper functions where possible
+* clear naming
+* no overengineering
+* no premature abstraction
+
+Suggested structure for plain JS:
+
+```text
+/index.html
+/styles.css
+/src/main.js
+/src/problemGenerators.js
+/src/storage.js
+/src/utils.js
+```
+
+If using Vite:
+
+```text
+/index.html
+/src/main.js
+/src/styles.css
+/src/problemGenerators.js
+/src/storage.js
+/src/utils.js
+```
+
+## Problem Generator Requirements
+
+Each problem generator should be independently testable.
+
+Example:
+
+```js
+function generateIntegerAdditionProblem() {
+  // returns a problem object
+}
+```
+
+Use helper functions:
+
+```js
+randomInt(min, max)
+shuffle(array)
+makeChoices(correctAnswer, wrongAnswers)
+```
+
+Make sure choices are unique.
+
+Avoid infinite loops when generating wrong choices.
+
+## Testing Checklist
+
+Before finishing a task, manually verify:
+
+* Page loads without errors.
+* A problem appears immediately.
+* All four answer buttons work.
+* Correct answer increases streak.
+* Wrong answer resets current streak.
+* Best streak is saved.
+* Stats persist after refresh.
+* Choices are unique.
+* Correct answer always exists in choices.
+* Next problem appears automatically.
+* Mobile layout is usable.
+* No console errors.
+
+If tests are available, run them.
+
+If no automated tests exist, state what manual checks were done.
+
+## Accessibility
+
+Basic accessibility is required.
+
+* Use semantic buttons.
+* Ensure buttons are keyboard accessible.
+* Provide visible focus states.
+* Text contrast should be readable.
+* Do not rely only on color to show correct/wrong.
+* Use clear Korean labels.
+
+## Language
+
+User-facing text should be Korean.
+
+Code comments may be English or Korean, but keep them practical.
+
+Preferred Korean tone:
+
+* casual
+* short
+* playful
+* not childish
+* not lecture-like
+
+## What Not To Build Yet
+
+Do not build these in the MVP unless explicitly requested:
+
+* user accounts
+* backend
+* database
+* global ranking
+* paid features
+* ads
+* AI-generated problems
+* image-based geometry
+* complex analytics
+* social features
+* push notifications
+* app store packaging
+
+## Future Ideas
+
+These are optional later ideas, not MVP requirements:
+
+* PWA install support
+* haptic feedback on mobile
+* daily count
+* category toggle
+* difficulty toggle
+* dark mode
+* sound effects
+* "zen mode"
+* "10문제만 풀기" mode
+* weak category detection
+* Android app using Kotlin Compose
+
+## Development Priority
+
+When choosing between polish and simplicity:
+
+1. Keep the solving rhythm fast.
+2. Keep problems short.
+3. Keep UI clean.
+4. Keep code maintainable.
+5. Avoid unnecessary features.
+
+The MVP succeeds if the user naturally wants to solve "just one more" problem.

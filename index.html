@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>수학 뽁뽁이</title>
+  <meta name="description" content="머리가 심심할 때 누르는 수학 뽁뽁이." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>수학 뽁뽁이</h1>
+      <p class="tagline">공부하려고 만든 거 아님.<br />그냥 뇌로 돌리는 피젯 토이.</p>
+    </header>
+
+    <section class="stats" aria-label="기록">
+      <div class="stat">
+        <span class="label">연속</span>
+        <span class="value" id="stat-streak">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">최고 연속</span>
+        <span class="value" id="stat-best">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">푼 문제</span>
+        <span class="value" id="stat-solved">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">정답</span>
+        <span class="value" id="stat-correct">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">오답</span>
+        <span class="value" id="stat-wrong">0</span>
+      </div>
+    </section>
+
+    <main class="card" id="problem-card">
+      <p class="question" id="question"></p>
+      <div class="choices" id="choices"></div>
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+    </main>
+
+    <div class="actions">
+      <button type="button" class="next-btn" id="next-btn" hidden>다음 문제</button>
+    </div>
+
+    <section class="slingshot-card">
+      <p class="slingshot-hint">심심하면 당기기</p>
+      <div class="slingshot" id="slingshot">
+        <svg viewBox="0 0 200 130" aria-hidden="true">
+          <!-- Y자 새총 틀 -->
+          <line x1="100" y1="118" x2="100" y2="88" stroke="#a07c5b" stroke-width="7" stroke-linecap="round" />
+          <line x1="100" y1="88" x2="72" y2="50" stroke="#a07c5b" stroke-width="6" stroke-linecap="round" />
+          <line x1="100" y1="88" x2="128" y2="50" stroke="#a07c5b" stroke-width="6" stroke-linecap="round" />
+          <!-- 고무줄 -->
+          <line id="band-left" x1="72" y1="50" x2="100" y2="56" stroke="#c4a484" stroke-width="3.5" stroke-linecap="round" />
+          <line id="band-right" x1="128" y1="50" x2="100" y2="56" stroke="#c4a484" stroke-width="3.5" stroke-linecap="round" />
+        </svg>
+        <button type="button" class="pouch" id="pouch" aria-label="새총 파우치. 드래그해서 당겼다 놓으면 발사"></button>
+      </div>
+      <p class="slingshot-result" id="sling-result" aria-live="polite"></p>
+      <ol class="sling-top" id="sling-top" aria-label="새총 비거리 순위"></ol>
+    </section>
+
+    <footer>
+      <button type="button" class="reset-btn" id="reset-btn">기록 초기화</button>
+    </footer>
+  </div>
+
+  <div id="fly-layer" aria-hidden="true"></div>
+
+  <script src="src/utils.js"></script>
+  <script src="src/storage.js"></script>
+  <script src="src/problemGenerators.js"></script>
+  <script src="src/main.js"></script>
+  <script src="src/slingshot.js"></script>
+</body>
+</html>
